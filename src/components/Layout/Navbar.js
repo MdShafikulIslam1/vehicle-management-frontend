@@ -1,3 +1,5 @@
+import Link from "next/link";
+import Image from 'next/image';
 const Navbar = () => {
   const navItems = [
     {
@@ -45,7 +47,18 @@ const Navbar = () => {
             ))}
           </ul>
         </div>
-        <img src="/images/logo.png" alt="logo.." className="w-20 h-20"/>
+
+        <Link href="/">
+        <Image
+                    src="/images/logo.png"
+                    alt='avater'
+                    className="w-20 h-20
+                    object-cover"
+                    width={0}
+                    height={0}
+                    unoptimized
+                />
+          </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -58,10 +71,8 @@ const Navbar = () => {
       </div>
       <div className="navbar-end gap-6">
       
-      <a className="btn">VT-Shop</a>
-        {/* Login & logout will be conditional rendering */}
-        <a className="btn">Log In</a> 
-        {/* <a className="btn">Log Out</a> */}
+      <Link href="login">Login</Link>
+      <Link href="signup">Sign Up</Link>
 
 
       </div>
