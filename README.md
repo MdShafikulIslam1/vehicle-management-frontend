@@ -18,7 +18,7 @@ https://github.com/MdShafikulIslam1/vehicle-management-frontend/pulls
 
 ### visit this link after code sucessfully push. 
 ### Then click new pull Request...
-## Base - dev (always) <= Compare - BranchName
+## Base - development (always) <= Compare - BranchName
 
 # 🔥 Git Clone
 
