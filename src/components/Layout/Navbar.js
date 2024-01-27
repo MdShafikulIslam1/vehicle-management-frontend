@@ -1,23 +1,47 @@
+'use client'
+
 import Link from "next/link";
+import { useState } from "react";
 import Image from 'next/image';
+
 const Navbar = () => {
+
+// nav color change
+const [color, setColor] = useState(false)
+const changeColor = ()=>{
+  if(window.scrollY >= 100){
+    setColor(true)
+  }else{
+    setColor(false)
+  }
+}
+if (typeof window !== 'undefined') {
+  window.addEventListener('scroll', changeColor);
+}
+
+
   const navItems = [
     {
       id: 1,
       itemName: "Business",
+      link:"/business"
     },
     {
       id: 2,
       itemName: "Shifting",
+      link:'/shifting'
     },
     {
       id: 3,
-      itemName: "Vehicle Owner",
+      itemName: "Dashboard",
+      link:"/dashboard"
     },
   ];
 
   return (
-    <div className="navbar container mx-auto">
+    <div className={`${color ? "bg-secondary opacity-80 duration-500 ease-in" : "duration-500 ease-in-out"} sticky top-0 z-[9999] text-brand`}
+    >
+      <div className="navbar container mx-auto md:px-20">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -42,40 +66,42 @@ const Navbar = () => {
           >
             {navItems?.map((navItem) => (
               <li key={navItem?.id}>
-                <a className="">{navItem?.itemName}</a>
+                <Link href={navItem?.link} className="">{navItem?.itemName}</Link>
               </li>
             ))}
           </ul>
         </div>
-
-        <Link href="/">
-        <Image
+        <Link href='/'>
+            <Image
                     src="/images/logo.png"
-                    alt='avater'
-                    className="w-20 h-20
-                    object-cover"
+                    alt='logo'
+                    className="w-12 h-12"
                     width={0}
                     height={0}
                     unoptimized
                 />
-          </Link>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           {navItems?.map((navItem) => (
-            <li key={navItem?.id}>
-              <a>{navItem?.itemName}</a>
+            <li key={navItem?.id} >
+              <Link href={navItem?.link} className={`${color ? "" : "text-brand"} font-bold text-[18px]`}>{navItem?.itemName}</Link>
             </li>
           ))}
         </ul>
       </div>
       <div className="navbar-end gap-6">
+      {/* <a href="#" target="_blank" className="border-2 border-brand py-2 px-5 text-green-400 font-bold rounded-sm">VT-Shop</a>
+       */}
       
-      <Link href="login">Login</Link>
-      <Link href="signup">Sign Up</Link>
-
-
+        {/* Login & logout will be conditional rendering */}
+        <Link href="/signup" className="border-2 border-green-400 py-2 px-5 text-green-400 font-bold rounded-sm">Sign Up</Link>
+        <Link href="/login" className="border-2 border-green-400 py-2 px-5 text-green-400 font-bold rounded-sm">Log In</Link> 
+        {/* <a className="border-2 border-red-400 py-2 px-5 text-white font-bold rounded-sm">Log Out</a>  */}
+       
       </div>
+    </div>
     </div>
   );
 };

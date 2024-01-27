@@ -1,11 +1,16 @@
 import Head from "next/head";
+import Banner from "../components/Banner/Banner";
+import Service from "../components/UI/service/Service";
+import ToggleMenus from "../components/UI/service/ToggleMenus";
 const HomePage = () => {
   return (
     <div>
       <Head>
         <title>VT-Home</title>
       </Head>
-      <h1>Welcome To Next Auth Home Page</h1>
+      <Banner />
+      <Service />
+      <ToggleMenus />
     </div>
   );
 };
